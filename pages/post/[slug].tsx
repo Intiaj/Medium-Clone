@@ -1,16 +1,19 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetStaticProps } from "next";
 import React, { useState } from "react";
 import PortableText from "react-portable-text";
 import Header from "../../components/Header";
 import { sanityClient, urlFor } from "../../sanity";
 import { Post } from "../../typings";
-import { useForm, SubmitHandler } from "react-hook-form";
-
+import { useForm } from "react-hook-form";
+{
+  /*
 interface InputFormType {
   _id: string;
   name: string;
   email: string;
   comment: string;
+}*/
 }
 
 interface Props {
@@ -26,7 +29,7 @@ function Post({ post }: Props) {
   } = useForm();
   console.log(post);
 
-  const onSubmitClick: SubmitHandler<InputFormType> = (data) => {
+  const onSubmit = (data: any) => {
     fetch("/api/createComment", {
       method: "POST",
       body: JSON.stringify(data),
@@ -101,7 +104,7 @@ function Post({ post }: Props) {
         </div>
       ) : (
         <form
-          onSubmit={handleSubmit(onSubmitClick)}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col p-5 max-w-2xl mb-10"
         >
           <h3 className="text-sm text-yellow-500 ">Enjoyed this article?</h3>
