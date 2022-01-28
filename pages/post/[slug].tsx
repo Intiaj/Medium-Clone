@@ -105,7 +105,7 @@ function Post({ post }: Props) {
       ) : (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col p-5 max-w-2xl mb-10"
+          className="flex flex-col items-center justify-center p-5 max-w-2xl mb-10"
         >
           <h3 className="text-sm text-yellow-500 ">Enjoyed this article?</h3>
           <h4 className="text-3xl font-bold">Leave a comment below!</h4>
