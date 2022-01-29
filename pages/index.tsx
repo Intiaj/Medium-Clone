@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/Header";
@@ -36,6 +39,53 @@ export default function Home({ posts }: Props) {
           alt="Image"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Medium_logo_Monogram.svg/1200px-Medium_logo_Monogram.svg.png"
         />
+      </div>
+
+      <div>
+        <div className="flex p-2 items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 ml-10"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+            />
+          </svg>
+          <h1 className="text-sm font-bold pl-2">TRENDING ON MEDIUM</h1>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 p-2 md:p-6">
+          {posts.slice(0, 2).map((item) => (
+            <Link href={`/post/${item.slug.current}`} key={item._id}>
+              <div className="cursor-pointer">
+                <div className="flex p-2">
+                  <img
+                    src={urlFor(item.author.image).url()!}
+                    alt=""
+                    className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                  />
+                  <h1 className="flex text-sm items-center pl-2 font-semibold">
+                    {item.author.name}
+                  </h1>
+                </div>
+
+                <div>
+                  <h1 className="text-lg font-bold">{item.title}</h1>
+
+                  <h1 className="text-xs text-gray-500 font-semibold">
+                    {new Date(item._createdAt).toLocaleString()}
+                  </h1>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 p-2 md:p-6">
